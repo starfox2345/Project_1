@@ -42,8 +42,7 @@ class CLI
     end
 
     def list_orders
-        orders = ["Turkey & Cheese Sandwich","Bacon Egg & Cheese Sandwich", "Bologna and Cheese Sandwich", 
-        "Steak & Cheese Sandwich", "Grilled Salmon Sandwich with Dill Sauce"]
+        orders = ["Turkey & Cheese Sandwich","Bacon Egg & Cheese Sandwich", "Bologna and Cheese Sandwich", "Steak & Cheese Sandwich", "Grilled Salmon Sandwich with Dill Sauce"]
         orders.each.with_index(1) do |item, index|
             puts "#{index}. #{item}"
         end
