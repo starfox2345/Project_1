@@ -17,22 +17,20 @@ class CLI
     end
 
     def menu
-        puts "Enter 'A' to add sandwich \nEnter 'L' to list sandwiches \nEnter 'e' to Exit"
+        puts "Enter 'A' to add sandwich\nEnter 'C' to view Cart \nEnter 'L' to list sandwiches \nEnter 'e' to Exit"
         selection = user_input
         if selection.downcase == "a"
-            
-
+            add_Order
         elsif selection == "l" || selection == "L"
             list_orders
-            
+        elsif selection.upcase == "C"
+            cart
         elsif selection.downcase == "e"
             exit_order
         else
             invalid
         end
     end
-
-    
 
     def exit_order
         puts "Thank you"
@@ -48,7 +46,6 @@ class CLI
         orders.each.with_index(1) do |item, index|
             puts "#{index}. #{item}"
         end
-        
         puts "Enter 'A' to Add sandwiches \nEnter 'D' to know more about them"
         selection = gets.strip
         case selection.upcase
@@ -61,6 +58,20 @@ class CLI
 
     @@cart = []
 
+    def cart
+        puts @@cart
+        puts "'M' - Menu\n'E' - Exit\n'A' - Add more Sandwiches"
+        input = user_input
+        case input.upcase
+        when 'M'
+            menu
+        when 'E'
+            exit_order
+        when 'A'
+            add_Order
+        end
+    end
+
     def add_Order
         orders = ["Turkey & Cheese Sandwich","Bacon Egg & Cheese Sandwich", "Bologna and Cheese Sandwich", "Steak & Cheese Sandwich", "Grilled Salmon Sandwich with Dill Sauce"]
         orders.each.with_index(1) do |item, index|
@@ -68,64 +79,89 @@ class CLI
         end
         puts "Please enter the number or the name of the sandwich that you would like to order."
         order_name = gets.strip
-        if order_name == "1" || order.downcase == "Turkey & Cheese Sandwich".downcase
-            @@cart << order_name
-            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
+        if order_name == "1" || order_name.downcase == "Turkey & Cheese Sandwich".downcase
+            @@cart << "Turkey & Cheese Sandwich"
+            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'S' to Add Sauce\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
             input = user_input
             if input.upcase == 'A'
                 add_Order
+            elsif input.upcase == 'S'
+                sauce
             elsif input.upcase == 'M'
                 menu
             elsif input.upcase == 'E'
                 exit_order
+            else
+                puts "Wrong input. Please try again."
+                add_Order
             end
 
-        elsif order == "2" || order.downcase == "Bacon Egg & Cheese Sandwich".downcase
-            @@cart << order_name
-            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
+        elsif order_name == "2" || order_name.downcase == "Bacon Egg & Cheese Sandwich".downcase
+            @@cart << "Bacon Egg & Cheese Sandwich"
+            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'S' to Add Sauce\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
             input = user_input
             if input.upcase == 'A'
                 add_Order
+            elsif input.upcase == 'S'
+                sauce
             elsif input.upcase == 'M'
                 menu
             elsif input.upcase == 'E'
                 exit_order
+            else
+                puts "Wrong input. Please try again."
+                add_Order
             end
 
-        elsif order == "3" || order.downcase == "Bologna and Cheese Sandwich".downcase
-            @@cart << order_name
-            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
+        elsif order_name == "3" || order_name.downcase == "Bologna and Cheese Sandwich".downcase
+            @@cart << "Bologna and Cheese Sandwich"
+            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'S' to Add Sauce\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
             input = user_input
             if input.upcase == 'A'
                 add_Order
+            elsif input.upcase == 'S'
+                sauce
             elsif input.upcase == 'M'
                 menu
             elsif input.upcase == 'E'
                 exit_order
+            else
+                puts "Wrong input. Please try again."
+                add_Order
             end
 
-        elsif order == "4" || order.downcase == "Steak & Cheese Sandwich".downcase
-            @@cart << order_name
-            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
+        elsif order_name == "4" || order_name.downcase == "Steak & Cheese Sandwich".downcase
+            @@cart << "Steak & Cheese Sandwich"
+            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'S' to Add Sauce\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
             input = user_input
             if input.upcase == 'A'
                 add_Order
+            elsif input.upcase == 'S'
+                sauce
             elsif input.upcase == 'M'
                 menu
             elsif input.upcase == 'E'
                 exit_order
+            else
+                puts "Wrong input. Please try again."
+                add_Order
             end
 
-        elsif order == "5" || order.downcase == "Grilled Salmon Sandwich with Dill Sauce".downcase
-            @@cart << order_name
-            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
+        elsif order_name == "5" || order_name.downcase == "Grilled Salmon Sandwich with Dill Sauce".downcase
+            @@cart << "Grilled Salmon Sandwich with Dill Sauce"
+            puts "Would like to order more or checkout?\nEnter 'A' to order more\nEnter 'S' to Add Sauce\nEnter 'M' to go back to Menu\nEnter 'E' to exit"
             input = user_input
             if input.upcase == 'A'
                 add_Order
+            elsif input.upcase == 'S'
+                sauce
             elsif input.upcase == 'M'
                 menu
             elsif input.upcase == 'E'
                 exit_order
+            else
+                puts "Wrong input. Please try again."
+                add_Order
             end
         else
             puts "Unable to read command. Please try again."
@@ -133,36 +169,36 @@ class CLI
         end
     end
 
+    # def sauce
+    #     puts "Would you like to Add Sauce to your Sandwich?"
+    #     puts "Enter 'Y' to Add Sauce\nEnter 'N' to leave it as is"
+    #     input = user_input
+    #     if input.upcase == 'Y'
+    #         add_sauce
+    #     elsif input.upcase == 'N'
+    #         add_Order
+    #     else
+    #         "I didn't catch that."
+    #             sauce
+    #     end
+    # end
+
     def sauce
-        puts "Would you like to Add Sauce to your Sandwich?"
-        puts "Enter 'Y' to Add Sauce\nEnter 'N' to leave it as is"
-        input = user_input
-        if input.upcase == 'Y'
-            add_sauce
-        elsif input.upcase == 'N'
-            add_Order
-        else
-            "I didn't catch that."
-                sauce
-        end
-
-    end
-
-    def add_sauce
         ketchup_mustard = ["Ketchup", "Mustard"]
-        ketchup_mustard.each_with_index(1) do |sauce, index|
-            puts "#{index}. #{sauce}"
+        ketchup_mustard.each_with_index(1) do |sauce_sauce, index|
+            puts "#{index}. #{sauce_sauce}"
         end
-        puts "Would you like to add Ketchup or Mustard?\nEnter '1' to add Ketchup or '2' to add Mustard\nEnter 'A' to go back to the Menu"
+        puts "Would you like to add Ketchup or Mustard?\nEnter '1' to add Ketchup or '2' to add Mustard\nEnter 'M' to go back to the Menu"
         input = user_input
         case input
         when '1'
             @@cart << "with Ketchup"
         when '2'
             @@cart << "with Mustard"
-        when 'A' || 'a'
+        when 'M' || 'm'
             menu
         end
+        
     end
 
     def sandwich_select
